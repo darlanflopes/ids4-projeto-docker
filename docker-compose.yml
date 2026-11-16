@@ -1,0 +1,11 @@
+services:
+  # Exemplo de serviço de banco de dados para o projeto
+  banco-dados:
+    image: postgres:15
+    container_name: ids_postgres_local
+    environment:
+      POSTGRES_USER: darlan
+      POSTGRES_PASSWORD: senha123
+      POSTGRES_DB: idsdB
+    ports:
+      - "5432:5432"

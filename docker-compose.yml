@@ -1,11 +1,14 @@
 services:
-  # Exemplo de serviço de banco de dados para o projeto
-  banco-dados:
-    image: postgres:15
-    container_name: ids_postgres_local
-    environment:
-      POSTGRES_USER: darlan
-      POSTGRES_PASSWORD: senha123
-      POSTGRES_DB: idsdB
-    ports:
-      - "5432:5432"
+  ids-analiser:
+    build: .
+    container_name: ids_suricata_tcpdump
+    # O comando tail -f mantém o container rodando em segundo plano para você poder acessá-lo e testar as ferramentas
+    command: tail -f /dev/null
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - ids-net
+
+networks:
+  ids-net:
+    driver: bridge

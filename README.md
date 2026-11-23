@@ -31,3 +31,18 @@ docker exec -it ids4-projeto-docker bash
 ```bash
 docker compose down
 ```
+
+## Sensor de rede (`ids-sensor`: Suricata e tcpdump)
+
+O serviço `ids-sensor` é construído a partir do `Dockerfile` e sobe junto com o ambiente via `docker compose up --build -d` (ou `make up`), mantendo `postgres` e `redis` ativos.
+
+- **Modo de execução:** o container inicia em modo interativo (`tail -f /dev/null`) para desenvolvimento e testes manuais, permitindo abrir um shell e executar `suricata` ou `tcpdump` sob demanda sem encerrar o container.
+- **Permissões de rede:** utiliza `NET_ADMIN` e `NET_RAW` para permitir captura e análise de tráfego.
+- **Diretórios mapeados:** `./suricata-logs` (`/var/log/suricata`) e `./captures` (`/captures`).
+
+### Como acessar e testar as ferramentas
+
+1. Abra um terminal dentro do serviço `ids-sensor`:
+```bash
+docker compose exec ids-sensor
+```

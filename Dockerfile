@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     net-tools \
     && rm -rf /var/lib/apt/lists/*
 
-# Cria um diretório de trabalho para logs e regras
+# Cria um diretório de trabalho para os logs e as regras
 WORKDIR /app
 
 # Comando padrão ao iniciar o container
